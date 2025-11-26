@@ -1,15 +1,19 @@
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['images.unsplash.com', 'aistudiocdn.com'],
+    unoptimized: true, // Improves build stability for static exports if needed
   },
-  // Ensure build succeeds even if there are minor type/lint errors
   typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
     ignoreBuildErrors: true,
   },
   eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
 }
