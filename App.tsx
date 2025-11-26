@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { UserData, QuestionStep, CalculatedStats, DietPlan, WorkoutDay, ShoppingItem, Language, Theme, ResultTab } from './types';
 import { calculateResults, generateDietPlan, generateTrainingPlan, generateShoppingList } from './utils/calculations';

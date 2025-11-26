@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState } from 'react';
 
 interface AdSenseProps {
@@ -10,6 +12,12 @@ interface AdSenseProps {
   layoutKey?: string; // Used to force refresh on route change
 }
 
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
 export const AdSense: React.FC<AdSenseProps> = ({ 
   slot, 
   format = 'auto', 
@@ -20,7 +28,7 @@ export const AdSense: React.FC<AdSenseProps> = ({
   layoutKey
 }) => {
   const adRef = useRef<HTMLDivElement>(null);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'ready'>('idle');
+  const [status, setStatus] = useState<'idle' | 'ready'>('idle');
 
   // Determine min-height based on format to prevent CLS
   const getMinHeight = () => {
@@ -33,63 +41,74 @@ export const AdSense: React.FC<AdSenseProps> = ({
     return '280px'; // Default for auto/responsive
   };
 
-  // Effect 1: Handle layout timing and visibility check
+  // Effect 1: Wait for actual DOM dimensions
   useEffect(() => {
-    // Reset to loading whenever identifying props change
-    setStatus('loading');
+    if (typeof window === 'undefined' || !adRef.current) return;
 
-    const timer = setTimeout(() => {
-      const element = adRef.current;
-      // Check if element exists and is visible (has dimensions or offsetParent)
-      if (element && (element.offsetWidth > 0 || element.offsetParent !== null)) {
-         setStatus('ready');
-      } else {
-         setStatus('idle');
+    // Reset status when props change to force re-evaluation
+    setStatus('idle');
+
+    // Helper to check dimensions
+    const hasDimensions = (el: HTMLElement) => {
+      return el.offsetWidth > 0 && el.offsetHeight > 0;
+    };
+
+    // 1. Initial check (if already visible)
+    if (hasDimensions(adRef.current)) {
+      setStatus('ready');
+      return;
+    }
+
+    // 2. Observer for layout changes (waits for slide-up animations or tab switches)
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry && entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+        setStatus('ready');
+        observer.disconnect(); // Stop observing once we are ready to load
       }
-    }, 200); // Short delay to allow DOM layout to settle
+    });
 
-    return () => clearTimeout(timer);
+    observer.observe(adRef.current);
+
+    return () => observer.disconnect();
   }, [slot, layoutKey]);
 
-  // Effect 2: Trigger AdSense push ONLY after status is 'ready' (meaning <ins> is in DOM)
+  // Effect 2: Trigger AdSense push ONLY after status is 'ready' and element is visible
   useEffect(() => {
-    if (status === 'ready') {
-       // Use requestAnimationFrame to ensure DOM paint has occurred
-       const rafId = requestAnimationFrame(() => {
-          // 1. Check if component is still mounted
-          if (!adRef.current) return;
-
-          // 2. Find the specific <ins> tag in this component
-          const insElement = adRef.current.querySelector('ins.adsbygoogle');
-
-          // 3. Only push if the element exists AND it hasn't been filled yet.
-          // AdSense adds 'data-adsbygoogle-status="done"' (or similar) when filled.
-          if (insElement && !insElement.getAttribute('data-adsbygoogle-status')) {
-             try {
-               if (typeof window !== 'undefined') {
-                 // @ts-ignore
-                 (window.adsbygoogle = window.adsbygoogle || []).push({});
-               }
-             } catch (e) {
-               console.error("AdSense Push execution error:", e);
-             }
+    if (status === 'ready' && adRef.current) {
+       // Use a timeout to ensure React has fully committed the <ins> tag to the DOM
+       const timer = setTimeout(() => {
+          try {
+            if (typeof window !== 'undefined') {
+              const ins = adRef.current?.querySelector('ins.adsbygoogle');
+              // Only push if the tag exists and hasn't been processed yet
+              if (ins && !ins.getAttribute('data-adsbygoogle-status') && ins.innerHTML === "") {
+                 // Double check width to be absolutely safe
+                 if (adRef.current && adRef.current.offsetWidth > 0) {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                 }
+              }
+            }
+          } catch (e) {
+            console.error("AdSense Push execution error:", e);
           }
-       });
+       }, 100);
 
-       return () => cancelAnimationFrame(rafId);
+       return () => clearTimeout(timer);
     }
   }, [status]);
 
   // Development Mode: Visual Placeholder
-  const isDev = false; // Set to true to see ad boxes in dev without script
+  const isDev = process.env.NODE_ENV === 'development'; 
+  const minH = getMinHeight();
 
   return (
     <div 
       ref={adRef}
       className={`ad-container w-full flex flex-col items-center justify-center my-6 ${className}`}
-      style={{ minHeight: getMinHeight(), ...style }} 
+      style={{ minHeight: minH, ...style }} 
     >
-      {/* Label - Requirement: Clear separation */}
+      {/* Label */}
       <div className="w-full text-center mb-1">
         <span className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold bg-slate-900/50 px-2 py-0.5 rounded">
           {label}
@@ -97,9 +116,12 @@ export const AdSense: React.FC<AdSenseProps> = ({
       </div>
 
       {/* Ad Wrapper */}
-      <div className="w-full bg-slate-900/20 rounded-lg overflow-hidden flex justify-center items-center relative transition-colors duration-300 border border-slate-800/30">
+      <div 
+        className="w-full bg-slate-900/20 rounded-lg overflow-hidden flex justify-center items-center relative transition-colors duration-300 border border-slate-800/30"
+        style={{ minHeight: minH }}
+      >
         
-        {/* Ad Script - Only rendered when ready */}
+        {/* Ad Script - Only rendered when layout is stable */}
         {status === 'ready' && !isDev && (
           <ins
             className="adsbygoogle block"
@@ -111,11 +133,11 @@ export const AdSense: React.FC<AdSenseProps> = ({
           />
         )}
         
-        {/* Placeholder / Loading State to prevent CLS */}
+        {/* Placeholder / Loading State */}
         {(status !== 'ready' || isDev) && (
            <div 
              className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/40 animate-pulse text-slate-700"
-             style={{ minHeight: getMinHeight() }}
+             style={{ minHeight: minH }}
            >
               {isDev ? (
                  <span className="text-xs font-mono border border-slate-600 p-2 rounded">DEV AD: {slot}</span>
@@ -127,4 +149,4 @@ export const AdSense: React.FC<AdSenseProps> = ({
       </div>
     </div>
   );
-};
+}
