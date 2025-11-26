@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next'
 import Script from 'next/script'
 import './globals.css'
@@ -14,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
@@ -26,8 +27,10 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </head>
-      <body>
-        <div id="root">{children}</div>
+      <body className="min-h-screen bg-slate-950 text-slate-50 antialiased selection:bg-rose-500 selection:text-white">
+        <div id="root" className="min-h-screen flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   )

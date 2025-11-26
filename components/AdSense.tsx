@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -85,14 +86,18 @@ export const AdSense: React.FC<AdSenseProps> = ({
               if (ins && !ins.getAttribute('data-adsbygoogle-status') && ins.innerHTML === "") {
                  // Double check width to be absolutely safe
                  if (adRef.current && adRef.current.offsetWidth > 0) {
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    try {
+                        (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    } catch (err) {
+                        console.error("AdSense push error ignored:", err);
+                    }
                  }
               }
             }
           } catch (e) {
-            console.error("AdSense Push execution error:", e);
+            console.error("AdSense execution error:", e);
           }
-       }, 100);
+       }, 500); // Increased delay slightly for safety
 
        return () => clearTimeout(timer);
     }
