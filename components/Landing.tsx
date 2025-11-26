@@ -56,7 +56,50 @@ const SEO_KEYWORDS = [
   // Questions
   "How much protein do I need", "How many calories to lose weight", "Best time to workout",
   "Pre workout meal ideas", "Post workout recovery", "Supplements for weight loss",
-  "Creatine benefits", "Whey protein vs plant protein", "Is cardio necessary for fat loss"
+  "Creatine benefits", "Whey protein vs plant protein", "Is cardio necessary for fat loss",
+
+  // --- NEW EXPANDED KEYWORDS ---
+  
+  // Muscle Specific Isolation
+  "Lower Chest Workout", "Upper Chest Exercises", "V-Taper Workout", "Wide Back Exercises",
+  "Tricep Isolation Exercises", "Bicep Peak Workout", "Forearm Strength Training", "Calf Growth Secrets",
+  "Hamstring Curls at Home", "Quad Sweep Exercises", "Rear Delt Flys", "Trap Workout",
+  "Inner Chest Workout", "Side Booty Exercises", "Lower Abs Workout", "Oblique Exercises",
+
+  // Equipment Specific
+  "Kettlebell Swing Benefits", "Resistance Band Full Body", "TRX Suspension Training", "Smith Machine Squats",
+  "Cable Machine Workouts", "Medicine Ball Exercises", "Sandbag Training", "Jump Rope Cardio",
+  "Pull Up Bar Exercises", "Dip Station Workout", "Landmine Press", "Battle Ropes Circuit",
+
+  // Advanced Training Concepts
+  "Time Under Tension", "Mind Muscle Connection", "Drop Sets vs Super Sets", "Rest Pause Training",
+  "German Volume Training", "5x5 Workout Program", "Wendler 5/3/1 Calculator", "Linear Periodization",
+  "Undulating Periodization", "Deload Week Strategy", "RPE Scale Explained", "One Rep Max Calculator",
+  "Eccentric Training", "Isometric Holds", "Plyometric Training", "Explosive Power Training",
+
+  // Supplements & Biohacking
+  "Casein Protein before Bed", "BCAA vs EAA", "Beta Alanine Tingles", "Citrulline Malate Dosage",
+  "Fish Oil for Joints", "Multivitamin for Bodybuilders", "ZMA for Sleep", "Turmeric for Inflammation",
+  "Ashwagandha for Cortisol", "Digestive Enzymes for Bloating", "Glutamine for Recovery", "L-Carnitine Fat Loss",
+  "Pre Workout Side Effects", "Non Stim Pre Workout", "Electrolytes for Fasting",
+
+  // Special Populations & Conditions
+  "Fitness over 40", "Fitness over 50", "Bodybuilding for Teens", "Female Strength Training",
+  "Prenatal Yoga", "Postpartum Core Rehab", "Diabetic Meal Plan", "PCOS Weight Loss",
+  "Thyroid Health Diet", "Low Testosterone Symptoms", "Menopause Weight Gain", "Arthritis Friendly Workout",
+  "Scoliosis Exercises", "Lower Back Pain Relief", "Sciatica Stretches",
+
+  // Mental & Wellness
+  "Gym Anxiety Tips", "Morning Routine for Energy", "Cold Plunge Benefits", "Sauna after Workout",
+  "Meditation for Athletes", "Visualizing Muscle Growth", "Habit Stacking Fitness",
+  "Alcohol and Muscle Growth", "Cheat Meal Strategy", "Social Eating Tips",
+  "Deep Sleep for Muscle", "Circadian Rhythm Fasting", "Dopamine Detox", "Stress Management",
+
+  // Scientific Terms
+  "Anabolic Window Myth", "Protein Synthesis Duration", "Glycogen Depletion", "Insulin Sensitivity",
+  "Cortisol Management", "Adrenal Fatigue", "Mitochondrial Health", "Nitric Oxide Boosting",
+  "Leptin Resistance", "Ghrelin Control", "Visceral Fat Reduction", "Subcutaneous Fat",
+  "Fast Twitch Muscle Fibers", "Slow Twitch Muscle Fibers", "ATP Energy System"
 ];
 
 export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
