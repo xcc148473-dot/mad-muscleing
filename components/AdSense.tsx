@@ -77,7 +77,7 @@ export const AdSense: React.FC<AdSenseProps> = ({
   // Effect 2: Trigger AdSense push ONLY after status is 'ready' and element is visible
   useEffect(() => {
     if (status === 'ready' && adRef.current) {
-       // Use a timeout to ensure React has fully committed the <ins> tag to the DOM
+       // Faster timeout (200ms) to catch rapid question transitions while safe enough for rendering
        const timer = setTimeout(() => {
           try {
             if (typeof window !== 'undefined') {
@@ -97,7 +97,7 @@ export const AdSense: React.FC<AdSenseProps> = ({
           } catch (e) {
             console.error("AdSense execution error:", e);
           }
-       }, 500); // Increased delay slightly for safety
+       }, 200); 
 
        return () => clearTimeout(timer);
     }

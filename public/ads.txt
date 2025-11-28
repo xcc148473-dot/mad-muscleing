@@ -1,0 +1,9 @@
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# ==============================================================================
+# INSTRUCTIONS FOR EZOIC:
+# 1. Log in to your Ezoic Dashboard.
+# 2. Go to Settings > Ads.txt Manager.
+# 3. Click "Get Code" or "Authorized Sellers".
+# 4. Copy all the text (it will be hundreds of lines).
+# 5. Paste everything below this line.
+# ==============================================================================

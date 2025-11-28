@@ -188,8 +188,8 @@ const getQuestions = (lang: Language): QuestionStep[] => {
       makeQ('cardio', 'select', 'cardioPref', [{ label: tOpt.love, value: 'love' }, { label: tOpt.hate, value: 'hate' }])
   ];
 
-  // --- PROGRAMMATICALLY GENERATE TO REACH 100+ ---
-  // Extended list to ensure > 100 questions
+  // --- PROGRAMMATICALLY GENERATE TO REACH 130+ ---
+  // Extended list to ensure > 130 questions (Total ~150 with base)
   const extraTopics = [
     'Morning Hydration', 'Sodium Sensitivity', 'Processed Sugar Intake', 'Trans Fats Avoidance', 
     'Omega-3 Index', 'Vitamin D Sun Exposure', 'Magnesium Levels', 'Zinc From Diet',
@@ -215,10 +215,24 @@ const getQuestions = (lang: Language): QuestionStep[] => {
     'Heart Rate Variability', 'Blood Sugar Awareness', 'Family Health History', 'Passive Smoking',
     'Air Conditioning Usage', 'Heating Usage', 'Bedding Type', 'Pajama Fabric', 'Shoe Arch Support',
     'Walking Surface', 'Stair Climbing Freq', 'Heavy Lifting Freq', 'Sports Participation',
-    'Dance Freq', 'Swimming Freq', 'Cycling Freq', 'Hiking Freq', 'Gardening Freq'
+    'Dance Freq', 'Swimming Freq', 'Cycling Freq', 'Hiking Freq', 'Gardening Freq',
+    // EXTENDED SET TO GUARANTEE 130+ PAGES
+    'Foam Rolling Technique', 'Warm-up Routine', 'Cool-down Routine', 'Active Recovery Methods',
+    'Rest Day Nutrition', 'Cheat Day Frequency', 'Intermittent Fasting Window', 'Calorie Cycling',
+    'Carb Cycling Strategy', 'Ketosis Monitoring', 'Blood Glucose Monitoring', 'Meal Prep Containers',
+    'Kitchen Scale Accuracy', 'Blender Type', 'Water Bottle Size', 'Gym Bag Essentials',
+    'Workout Towel Usage', 'Shower Routine', 'Skincare Post-Workout', 'Haircare Post-Workout',
+    'Deodorant Preference', 'Perfume/Cologne Usage', 'Laundry Frequency', 'Gym Wear Fabric',
+    'Sock Cushioning', 'Headband Usage', 'Wrist Wrap Usage', 'Lifting Belt Usage',
+    'Knee Sleeve Usage', 'Elbow Sleeve Usage', 'Chalk Usage', 'Ammonia Salts Usage',
+    'Pre-workout Snack', 'Intra-workout Drink', 'Post-workout Shake', 'Bedtime Snack',
+    'Melatonin Usage', 'White Noise Usage', 'Sleeping Position', 'Wake-up Light',
+    'Stretching Frequency', 'Pilates Experience', 'CrossFit Interest', 'Powerlifting Interest',
+    'Bodybuilding Interest', 'Strongman Interest', 'Olympic Lifting Interest', 'Calisthenics Interest',
+    'Parkour Interest', 'Gymnastics Interest', 'Martial Arts Interest', 'Boxing Interest'
   ];
 
-  // Append extra questions until we reach at least 100
+  // Append extra questions until we reach target
   extraTopics.forEach((topic, idx) => {
       questions.push(makeQ(
           `deep_dive_${idx}`, 

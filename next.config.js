@@ -3,18 +3,27 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['images.unsplash.com', 'aistudiocdn.com'],
-    unoptimized: true, // Improves build stability for static exports if needed
+    unoptimized: true, 
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
+  },
+  // If you prefer to use Ezoic's "Ads.txt Manager" redirect instead of the manual file:
+  async redirects() {
+    return [
+      /* 
+      // UNCOMMENT THE LINES BELOW TO ENABLE EZOIC AUTOMATIC ADS.TXT REDIRECT
+      // NOTE: You must replace [YOUR_DOMAIN] with your actual domain (e.g., madmuscleing.com)
+      {
+        source: '/ads.txt',
+        destination: 'https://srv.adstxtmanager.com/19390/madmuscleing.com',
+        permanent: true,
+      },
+      */
+    ]
   },
 }
 

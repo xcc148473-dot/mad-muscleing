@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { QuestionStep, UserData } from '../types';
 import { Card, Button } from './UI';
@@ -60,14 +61,14 @@ const PageLayout: React.FC<{
       )}
 
       {/* 3. Ad Slot 1 (Responsive) - High Viewability */}
-      <div className="w-full mb-8 flex justify-center min-h-[100px] sm:min-h-[280px]">
+      <div className="w-full mb-8 flex justify-center min-h-[120px] sm:min-h-[280px]">
         <AdSense 
           key={`ad-top-${id}`} 
           slot="AD_SLOT_TOP_123" 
           label="Sponsored"
           format="auto"
           responsive={true}
-          style={{ width: '100%', maxWidth: '728px', minHeight: '100px' }} // Adaptive height
+          style={{ width: '100%', maxWidth: '728px', minHeight: '280px' }} // Explicit min height for stability
           layoutKey={id} // Force refresh
         />
       </div>

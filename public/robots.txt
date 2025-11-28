@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Ensure Google and Ezoic can find your ads.txt
+Allow: /ads.txt
