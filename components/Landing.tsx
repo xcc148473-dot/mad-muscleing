@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button, Card } from './UI';
 import { getIcon, ADS } from '../constants';
@@ -289,6 +290,18 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
                        {kw}
                      </span>
                    ))}
+                </div>
+
+                {/* --- FOOTER LINKS --- */}
+                <div className="flex justify-center gap-6 mt-12 text-sm text-slate-500">
+                    <a href="/privacy-policy" className="hover:text-rose-500 transition-colors">Privacy Policy</a>
+                    <span className="text-slate-700">|</span>
+                    <a href="#" className="hover:text-rose-500 transition-colors">Terms of Service</a>
+                    <span className="text-slate-700">|</span>
+                    <a href="#" className="hover:text-rose-500 transition-colors">Contact</a>
+                </div>
+                <div className="text-center mt-4 text-xs text-slate-700">
+                    &copy; {new Date().getFullYear()} Mad Muscleing. All rights reserved.
                 </div>
              </div>
 
