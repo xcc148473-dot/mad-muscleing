@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: 'Mad Muscleing - Your Personal Plan',
   description: 'Mad Muscleing is your AI-powered fitness coach. Get personalized workout plans, custom diet meal plans, body fat calculations, and daily macro analysis.',
   keywords: 'Mad Muscleing, AI fitness coach, personalized workout plan, diet plan generator, body fat calculator, macro calculator, weight loss program',
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  }
 }
 
 export default function RootLayout({
