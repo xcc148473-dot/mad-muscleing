@@ -12,9 +12,10 @@ body {
   color: #f8fafc;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  perspective: 1000px;
 }
 
-/* Custom scrollbar for cleaner look */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -27,4 +28,62 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #475569; 
+}
+
+/* --- CLICK EFFECTS --- */
+
+/* Ripple (Inside buttons) */
+.effect-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+}
+
+/* Particles (Global Overlay) */
+.effect-particle {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Emojis (Global Overlay) */
+.effect-emoji {
+  position: fixed;
+  font-size: 24px;
+  pointer-events: none;
+  z-index: 9999;
+  user-select: none;
+}
+
+/* --- ANIMATIONS --- */
+
+/* Hard Shake for Buttons (Triggered by InteractiveVFX) */
+@keyframes shake-hard {
+  0%, 100% { transform: translateX(0) scale(1); }
+  20% { transform: translateX(-4px) rotate(-3deg) scale(0.95); }
+  40% { transform: translateX(4px) rotate(3deg) scale(0.95); }
+  60% { transform: translateX(-2px) rotate(-1deg) scale(1.05); }
+  80% { transform: translateX(2px) rotate(1deg) scale(1.05); }
+}
+
+.shake-effect {
+  animation: shake-hard 0.35s cubic-bezier(.36,.07,.19,.97) forwards !important;
+}
+
+/* Glow Intro */
+@keyframes glow-intro {
+  0% { opacity: 0; filter: brightness(2) blur(10px); }
+  100% { opacity: 1; filter: brightness(1) blur(0); }
+}
+
+.animate-glow-intro {
+  animation: glow-intro 0.8s ease-out forwards;
 }

@@ -139,7 +139,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
         </div>
 
         {/* --- CENTER CONTENT --- */}
-        <div className="flex-1 max-w-2xl w-full pb-40 flex flex-col items-stretch">
+        <div className="flex-1 max-w-2xl w-full pb-48 flex flex-col items-stretch">
             
             {/* === AD POS 1: TOP (Inside center col for flow) === */}
             <div className="w-full mb-6 z-20">
@@ -175,8 +175,8 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
                       Discover your metabolic age, body fat percentage, and get a meal plan tailored to your DNA.
                   </p>
 
-                  {/* PRIMARY CTA BUTTON */}
-                  <div className="mb-8 flex justify-center">
+                  {/* PRIMARY CTA BUTTON - MOVED DOWN WITH MT-8 */}
+                  <div className="mt-8 mb-12 flex justify-center">
                     <Button onClick={onStart} className="text-lg px-10 py-4 shadow-xl shadow-rose-500/30 animate-bounce-short hover:scale-105">
                         {btnText}
                     </Button>
@@ -332,7 +332,7 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
       </div>
       
       {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-slate-950/90 backdrop-blur-md border-t border-slate-800 z-50">
+      <div className="fixed bottom-0 left-0 right-0 p-3 bg-slate-950/90 backdrop-blur-md border-t border-slate-800 z-50">
         <div className="max-w-md mx-auto">
            <Button fullWidth onClick={onStart} className="text-xl py-5 shadow-[0_4px_20px_rgba(244,63,94,0.4)] hover:shadow-[0_6px_30px_rgba(244,63,94,0.6)]">
              {btnText}
