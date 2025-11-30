@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { QuestionStep, UserData } from '../types';
 import { Card, Button } from './UI';
@@ -60,17 +59,16 @@ const PageLayout: React.FC<{
         </p>
       )}
 
-      {/* 3. Ad Slot 1 (Responsive) - High Viewability */}
-      <div className="w-full mb-8 flex justify-center min-h-[120px] sm:min-h-[280px]">
-        <AdSense 
-          key={`ad-top-${id}`} 
-          slot="AD_SLOT_TOP_123" 
-          label="Sponsored"
-          format="auto"
-          responsive={true}
-          style={{ width: '100%', maxWidth: '728px', minHeight: '280px' }} // Explicit min height for stability
-          layoutKey={id} // Force refresh
-        />
+      {/* 3. Ad Slot 1 - SWAPPED: NOW MEDIUM RECTANGLE (Previously Bottom) */}
+      <div className="w-full mb-8 flex justify-center">
+         <AdSense 
+           key={`ad-top-${id}`} 
+           slot="AD_SLOT_MID_456" 
+           label="Sponsored"
+           format="rectangle"
+           style={{ width: '300px', height: '250px' }} // Fixed size for stability
+           layoutKey={id} // Force refresh
+         />
       </div>
 
       {/* 4. Main Question Content */}
@@ -78,16 +76,17 @@ const PageLayout: React.FC<{
         {children}
       </div>
 
-      {/* 5. Ad Slot 2 (Medium Rectangle) - After content */}
-      <div className="w-full mb-12 flex justify-center">
-         <AdSense 
-           key={`ad-mid-${id}`} 
-           slot="AD_SLOT_MID_456" 
-           label="Advertisement"
-           format="rectangle"
-           style={{ width: '300px', height: '250px' }} // Fixed size for stability
-           layoutKey={id}
-         />
+      {/* 5. Ad Slot 2 - SWAPPED: NOW RESPONSIVE LEADERBOARD (Previously Top) */}
+      <div className="w-full mb-12 flex justify-center min-h-[120px] sm:min-h-[280px]">
+        <AdSense 
+          key={`ad-bot-${id}`} 
+          slot="AD_SLOT_TOP_123" 
+          label="Advertisement"
+          format="auto"
+          responsive={true}
+          style={{ width: '100%', maxWidth: '728px', minHeight: '280px' }} // Explicit min height for stability
+          layoutKey={id}
+        />
       </div>
 
       {/* 6. Massive SEO Content (Always Visible) */}

@@ -105,7 +105,7 @@ const SEO_KEYWORDS = [
 
 export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
   // Fallback defaults if T is missing
-  const btnText = t?.start || "Start My Plan";
+  const btnText = "INITIALIZE YOUR PROTOCOL →";
   
   // Retrieve the massive content block for the current language
   const contentSections = LANDING_CONTENT[lang] || LANDING_CONTENT.en;
@@ -147,86 +147,87 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
             </div>
 
             {/* Hero Section - Centered */}
-            <header className="relative overflow-hidden bg-slate-900/50 rounded-3xl shadow-2xl shadow-black pb-12 pt-6 px-6 text-center border border-white/10 mb-8">
+            <header className="relative overflow-hidden bg-slate-950 rounded-3xl shadow-2xl shadow-black pb-12 pt-8 px-8 text-center border border-slate-800 mb-8 ring-1 ring-white/5">
                 {/* Background FX */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none">
-                    <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-rose-600/20 blur-[100px] rounded-full"></div>
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-600/20 blur-[100px] rounded-full"></div>
+                    <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-indigo-500/10 blur-[100px] rounded-full"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-rose-600/10 blur-[100px] rounded-full"></div>
                 </div>
 
-                <div className="relative z-10 flex justify-center items-center gap-2 mb-8">
-                <div className="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-700 rounded-xl flex items-center justify-center text-white font-black text-xl italic shadow-[0_0_15px_rgba(244,63,94,0.5)]">
-                    M
-                </div>
-                <span className="font-black text-2xl tracking-tight text-white">Mad Muscleing</span>
+                <div className="relative z-10 flex justify-center items-center gap-3 mb-8">
+                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center text-white font-black text-2xl italic shadow-inner border border-slate-800">
+                      M
+                  </div>
+                  <span className="font-bold text-xl tracking-widest text-slate-300 uppercase">Mad Muscleing</span>
                 </div>
 
                 <div className="relative z-10 animate-slide-up">
-                  <div className="inline-block px-4 py-1 bg-slate-800 text-rose-400 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-slate-700 shadow-lg">
-                      AI-Powered Analysis
-                  </div>
-                  <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight drop-shadow-xl">
-                      Get Your Dream Body <br/>
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-purple-500">
-                      In 30 Days
-                      </span>
+                  <h1 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight drop-shadow-2xl">
+                      PRECISION-ENGINEERED<br/>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-rose-400">
+                      METABOLIC PROTOCOLS
+                      </span><br/>
+                      FOR ELITE PHYSICAL TRANSFORMATION
                   </h1>
-                  <p className="text-slate-400 text-lg mb-6 max-w-md mx-auto leading-relaxed">
-                      Discover your metabolic age, body fat percentage, and get a meal plan tailored to your DNA.
+                  
+                  <p className="text-slate-400 text-base md:text-lg mb-8 max-w-lg mx-auto leading-relaxed font-light">
+                      Mad Muscleing bridges the gap between clinical sports science and daily application. We process <strong className="text-white">69 physiological data points</strong> to engineer a hyper-personalized blueprint for your body composition goals, eliminating the guesswork of generic fitness apps.
                   </p>
 
-                  {/* PRIMARY CTA BUTTON - MOVED DOWN WITH MT-8 */}
-                  <div className="mt-8 mb-12 flex justify-center">
-                    <Button onClick={onStart} className="text-lg px-10 py-4 shadow-xl shadow-rose-500/30 animate-bounce-short hover:scale-105">
+                  {/* Bullet Points */}
+                  <div className="text-left max-w-lg mx-auto mb-10 space-y-3 bg-slate-900/50 p-6 rounded-2xl border border-slate-800/50">
+                     {[
+                        { icon: 'activity', title: "Metabolic Rate Analysis", desc: "Clinical-grade caloric precision" },
+                        { icon: 'utensils', title: "Macro-Nutrient Partitioning", desc: "Optimized protein synthesis ratios" },
+                        { icon: 'shopping', title: "DNA-Tailored Diet Plans", desc: "Nutrition optimized for your biochemistry" },
+                        { icon: 'dumbbell', title: "Neurological Training Cycles", desc: "Hypertrophy based on adaptation" },
+                        { icon: 'smartphone', title: "Real-Time Analytics", desc: "Data-driven feedback loops" }
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-start gap-3">
+                          <div className="mt-1 text-rose-500 shrink-0">{getIcon(item.icon, 16)}</div>
+                          <div>
+                            <span className="text-slate-200 font-bold text-sm tracking-wide uppercase">{item.title}</span>
+                            <span className="text-slate-500 text-xs block">{item.desc}</span>
+                          </div>
+                       </div>
+                     ))}
+                  </div>
+
+                  {/* PRIMARY CTA BUTTON */}
+                  <div className="mt-8 mb-4 flex justify-center">
+                    <Button onClick={onStart} className="text-lg px-12 py-5 shadow-[0_0_30px_rgba(244,63,94,0.3)] hover:shadow-[0_0_50px_rgba(244,63,94,0.5)] bg-gradient-to-r from-rose-600 to-indigo-600 border border-white/10 uppercase tracking-widest font-black">
                         {btnText}
                     </Button>
                   </div>
-
-                  {/* Abstract Hero Visual */}
-                  <div className="relative w-64 h-64 mx-auto mb-8">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-rose-500 to-indigo-500 rounded-full opacity-20 animate-pulse-slow blur-xl"></div>
-                      <div className="absolute inset-4 bg-slate-900 rounded-[2rem] shadow-2xl flex items-center justify-center border-2 border-slate-700 z-10 relative overflow-hidden">
-                      <img 
-                          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                          alt="Fitness" 
-                          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
-                      />
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 to-transparent p-4">
-                          <div className="flex items-center gap-2 text-white">
-                          {getIcon('zap', 16, 'text-yellow-400 fill-yellow-400')}
-                          <span className="font-bold text-sm text-shadow">Personalized Plan</span>
-                          </div>
-                      </div>
-                      </div>
-                  </div>
+                  <p className="text-[10px] text-slate-600 uppercase tracking-widest font-bold">100% Free Analysis • No Credit Card Required</p>
                 </div>
             </header>
             
-            {/* Features Grid */}
+            {/* Features Grid (Secondary Info) */}
             <div className="space-y-4 mb-12">
-                <div className="flex justify-between items-center text-slate-500 text-sm font-bold uppercase tracking-wider mb-2">
-                  <span>What you get</span>
-                  <span>v2.4 Updated</span>
+                <div className="flex justify-between items-center text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2 px-2">
+                  <span>System Capabilities</span>
+                  <span>v3.0.1 Stable</span>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4">
-                  <Card className="p-6 flex items-start gap-4 bg-slate-900 border-slate-800 hover:bg-slate-800 hover:border-rose-500/30 transition-colors">
-                    <div className="w-12 h-12 rounded-full bg-indigo-900/30 text-indigo-400 flex items-center justify-center shrink-0">
-                      {getIcon('activity', 24)}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <Card className="p-5 flex items-start gap-4 bg-slate-900/80 border-slate-800 hover:border-rose-500/30 transition-all">
+                    <div className="w-10 h-10 rounded-lg bg-indigo-950 text-indigo-400 flex items-center justify-center shrink-0 border border-indigo-900">
+                      {getIcon('activity', 20)}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white mb-1">Metabolic Analysis</h3>
-                      <p className="text-sm text-slate-400">Complete breakdown of your BMR, TDEE, and metabolic age.</p>
+                      <h3 className="text-sm font-bold text-white mb-1 uppercase tracking-wide">TDEE Algorithm</h3>
+                      <p className="text-xs text-slate-500 leading-relaxed">Advanced energy expenditure calculation distinguishing NEAT vs EAT.</p>
                     </div>
                   </Card>
 
-                  <Card className="p-6 flex items-start gap-4 bg-slate-900 border-slate-800 hover:bg-slate-800 hover:border-rose-500/30 transition-colors">
-                     <div className="w-12 h-12 rounded-full bg-rose-900/30 text-rose-400 flex items-center justify-center shrink-0">
-                      {getIcon('ruler', 24)}
+                  <Card className="p-5 flex items-start gap-4 bg-slate-900/80 border-slate-800 hover:border-rose-500/30 transition-all">
+                     <div className="w-10 h-10 rounded-lg bg-rose-950 text-rose-400 flex items-center justify-center shrink-0 border border-rose-900">
+                      {getIcon('ruler', 20)}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white mb-1">Navy Body Fat Calc</h3>
-                      <p className="text-sm text-slate-400">Military-grade accuracy for body composition without equipment.</p>
+                      <h3 className="text-sm font-bold text-white mb-1 uppercase tracking-wide">US Navy Method</h3>
+                      <p className="text-xs text-slate-500 leading-relaxed">Military-grade body composition tracking without expensive equipment.</p>
                     </div>
                   </Card>
                 </div>
@@ -236,9 +237,9 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
              <div className="space-y-16 relative">
                 {/* Decorative Divider */}
                 <div className="flex items-center justify-center gap-4 mb-12 opacity-50">
-                   <div className="h-px bg-slate-700 w-full"></div>
-                   <span className="text-slate-500 uppercase text-xs font-bold tracking-[0.2em] shrink-0">The Science</span>
-                   <div className="h-px bg-slate-700 w-full"></div>
+                   <div className="h-px bg-slate-800 w-full"></div>
+                   <span className="text-slate-600 uppercase text-[10px] font-black tracking-[0.3em] shrink-0">The Methodology</span>
+                   <div className="h-px bg-slate-800 w-full"></div>
                 </div>
 
                 {contentSections.map((section, idx) => (
@@ -246,10 +247,10 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
                     
                     {/* Render Section Content */}
                     <div className="prose prose-invert max-w-none animate-slide-up">
-                      <h2 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 mb-6">
+                      <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500 mb-6 uppercase tracking-tight">
                         {section.title}
                       </h2>
-                      <div className="space-y-6 text-slate-300 leading-relaxed text-lg font-light">
+                      <div className="space-y-6 text-slate-400 leading-loose text-base font-light text-justify">
                          {section.content.map((para, pIdx) => (
                            <p key={pIdx}>{para}</p>
                          ))}
@@ -257,7 +258,6 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
                     </div>
 
                     {/* === AD POS: MIDDLE (50% Position) === */}
-                    {/* Desktop & Mobile */}
                     {idx === 3 && (
                       <div className="w-full my-8">
                         {ADS.placeholder('Content Ad (Middle)', 'h-32')}
@@ -268,9 +268,10 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
                 ))}
 
                 {/* Final Call to Action at bottom of text */}
-                <div className="mt-12 p-8 bg-rose-900/10 border border-rose-500/20 rounded-3xl text-center">
-                    <h3 className="text-xl font-bold text-rose-400 mb-4">Ready to decode your biology?</h3>
-                    <Button onClick={onStart} className="mx-auto">
+                <div className="mt-12 p-10 bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-3xl text-center">
+                    <h3 className="text-xl font-bold text-white mb-2">Ready to decode your biology?</h3>
+                    <p className="text-slate-500 text-sm mb-6 max-w-sm mx-auto">Join thousands of others who have optimized their physiology.</p>
+                    <Button onClick={onStart} className="mx-auto uppercase tracking-widest text-sm font-bold">
                        {btnText}
                     </Button>
                 </div>
@@ -283,25 +284,25 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
 
              {/* === SEO KEYWORDS SECTION === */}
              <div className="w-full mt-8 mb-24 pt-12 border-t border-slate-800/50">
-                <h4 className="text-center text-xs font-bold uppercase tracking-widest text-slate-600 mb-6">Popular Topics & Resources</h4>
+                <h4 className="text-center text-[10px] font-bold uppercase tracking-widest text-slate-700 mb-6">Trending Topics</h4>
                 <div className="flex flex-wrap justify-center gap-2">
                    {SEO_KEYWORDS.map((kw, i) => (
-                     <span key={i} className="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-500 hover:text-slate-300 hover:border-slate-600 transition-colors cursor-default">
+                     <span key={i} className="px-2 py-1 rounded bg-slate-900 border border-slate-800 text-[10px] text-slate-600 hover:text-slate-400 hover:border-slate-700 transition-colors cursor-default">
                        {kw}
                      </span>
                    ))}
                 </div>
 
                 {/* --- FOOTER LINKS --- */}
-                <div className="flex justify-center gap-6 mt-12 text-sm text-slate-500">
-                    <a href="/privacy-policy" className="hover:text-rose-500 transition-colors">Privacy Policy</a>
-                    <span className="text-slate-700">|</span>
-                    <a href="#" className="hover:text-rose-500 transition-colors">Terms of Service</a>
-                    <span className="text-slate-700">|</span>
+                <div className="flex justify-center gap-6 mt-12 text-xs text-slate-600 uppercase tracking-wider font-medium">
+                    <a href="/privacy-policy" className="hover:text-rose-500 transition-colors">Privacy</a>
+                    <span className="text-slate-800">/</span>
+                    <a href="#" className="hover:text-rose-500 transition-colors">Terms</a>
+                    <span className="text-slate-800">/</span>
                     <a href="#" className="hover:text-rose-500 transition-colors">Contact</a>
                 </div>
-                <div className="text-center mt-4 text-xs text-slate-700">
-                    &copy; {new Date().getFullYear()} Mad Muscleing. All rights reserved.
+                <div className="text-center mt-4 text-[10px] text-slate-800 font-mono">
+                    &copy; {new Date().getFullYear()} MAD MUSCLEING PROTOCOL. ALL RIGHTS RESERVED.
                 </div>
              </div>
 
@@ -334,11 +335,9 @@ export const Landing: React.FC<LandingProps> = ({ onStart, t, lang }) => {
       {/* Sticky CTA */}
       <div className="fixed bottom-0 left-0 right-0 p-3 bg-slate-950/90 backdrop-blur-md border-t border-slate-800 z-50">
         <div className="max-w-md mx-auto">
-           <Button fullWidth onClick={onStart} className="text-xl py-5 shadow-[0_4px_20px_rgba(244,63,94,0.4)] hover:shadow-[0_6px_30px_rgba(244,63,94,0.6)]">
+           <Button fullWidth onClick={onStart} className="text-lg py-4 shadow-[0_4px_20px_rgba(244,63,94,0.4)] hover:shadow-[0_6px_30px_rgba(244,63,94,0.6)] uppercase font-black tracking-widest">
              {btnText}
-             {getIcon('arrow-right', 24)}
            </Button>
-           <p className="text-center text-[10px] text-slate-500 mt-2 font-medium uppercase tracking-wider">No credit card required</p>
         </div>
       </div>
     </div>
